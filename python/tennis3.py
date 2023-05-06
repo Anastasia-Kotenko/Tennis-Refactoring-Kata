@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+WIN_FOR_ = "Win for "
+ADVANTAGE_ = "Advantage "
+ALL = "-All"
+DEUCE = "Deuce"
+
 
 class TennisGame3:
     def __init__(self, player1Name, player2Name):
@@ -17,9 +22,9 @@ class TennisGame3:
         if (self.p1 < 4 and self.p2 < 4) and (self.p1 + self.p2 < 6):
             p = ["Love", "Fifteen", "Thirty", "Forty"]
             s = p[self.p1]
-            return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
+            return s + ALL if (self.p1 == self.p2) else s + "-" + p[self.p2]
         else:
             if (self.p1 == self.p2):
-                return "Deuce"
+                return DEUCE
             s = self.p1N if self.p1 > self.p2 else self.p2N
-            return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+            return ADVANTAGE_ + s if ((self.p1 - self.p2) * (self.p1 - self.p2) == 1) else WIN_FOR_ + s

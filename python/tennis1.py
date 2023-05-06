@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+WIN_PL2 = "Win for player2"
+WIN_PL1 = "Win for player1"
+ADV_PL2 = "Advantage player2"
+ADV_PL1 = "Advantage player1"
+
 
 class TennisGame1:
 
@@ -25,25 +30,33 @@ class TennisGame1:
             }.get(self.p1points, "Deuce")
         elif (self.p1points>=4 or self.p2points>=4):
             minusResult = self.p1points-self.p2points
-            if (minusResult==1):
-                result ="Advantage player1"
-            elif (minusResult ==-1):
-                result ="Advantage player2"
-            elif (minusResult>=2):
-                result = "Win for player1"
-            else:
-                result ="Win for player2"
+            result = self.GET_WINNER(minusResult, result)
         else:
             for i in range(1,3):
-                if (i==1):
-                    tempScore = self.p1points
-                else:
-                    result+="-"
-                    tempScore = self.p2points
-                result += {
-                    0 : "Love",
-                    1 : "Fifteen",
-                    2 : "Thirty",
-                    3 : "Forty",
-                }[tempScore]
+                result = self.GET_PLACE(i, result)
+        return result
+
+    def GET_PLACE(self, i, result):
+        if (i == 1):
+            tempScore = self.p1points
+        else:
+            result += "-"
+            tempScore = self.p2points
+        result += {
+            0: "Love",
+            1: "Fifteen",
+            2: "Thirty",
+            3: "Forty",
+        }[tempScore]
+        return result
+
+    def GET_WINNER(self, minusResult, result):
+        if (minusResult == 1):
+            result = ADV_PL1
+        elif (minusResult == -1):
+            result = ADV_PL2
+        elif (minusResult >= 2):
+            result = WIN_PL1
+        else:
+            result = WIN_PL2
         return result
