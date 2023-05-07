@@ -2,7 +2,7 @@
 WIN_PL2 = "Win for player2"
 WIN_PL1 = "Win for player1"
 ADV_PL2 = "Advantage player2"
-ADV_PL1 = "Advantage player1"
+ADV_PL1 =  "Advantage player1"
 
 
 class TennisGame1:

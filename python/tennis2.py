@@ -8,7 +8,7 @@ DEUCE = "Deuce"
 ALL = "-All"
 THIRTY = "Thirty"
 FIFTEEN = "Fifteen"
-LOVE = "Love"
+LOVE =  "Love"
 
 
 class TennisGame2:

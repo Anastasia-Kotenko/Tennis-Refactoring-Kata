@@ -2,7 +2,7 @@
 ADVANTAGE_ = "Advantage "
 WIN_FOR_ = "Win for "
 DEUCE = "Deuce"
-ALL = "-All"
+ALL =  "-All"
 
 
 class TennisGame4:
