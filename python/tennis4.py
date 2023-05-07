@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+ADVANTAGE_ = "Advantage "
+WIN_FOR_ = "Win for "
+DEUCE = "Deuce"
+ALL =  "-All"
+
 
 class TennisGame4:
     def __init__(self, player1Name, player2Name):
@@ -14,12 +19,8 @@ class TennisGame4:
             self.receiverScore += 1
 
     def score(self):
-        result = Deuce(
-            self, GameServer(
-                self, GameReceiver(
-                    self, AdvantageServer(
-                        self, AdvantageReceiver(
-                            self, DefaultResult(self)))))).getResult()
+        result = Deuce(self, GameServer(self, GameReceiver(self, AdvantageServer(self, AdvantageReceiver(
+            self, DefaultResult(self)))))).getResult()
         return result.format()
 
     def receiverHasAdvantage(self):
@@ -47,7 +48,7 @@ class TennisResult:
         if "" == self.receiverScore:
             return self.serverScore
         if self.serverScore == self.receiverScore:
-            return self.serverScore + "-All"
+            return self.serverScore + ALL
         return self.serverScore + "-" + self.receiverScore
 
 
@@ -58,7 +59,7 @@ class Deuce:
 
     def getResult(self):
         if (self.game.isDeuce()):
-            return TennisResult("Deuce", "")
+            return TennisResult(DEUCE, "")
         return self.nextResult.getResult()
 
 
@@ -69,7 +70,7 @@ class GameServer:
 
     def getResult(self):
         if (self.game.serverHasWon()):
-            return TennisResult("Win for " + self.game.server, "")
+            return TennisResult(WIN_FOR_ + self.game.server, "")
         return self.nextResult.getResult()
 
 
@@ -80,7 +81,7 @@ class GameReceiver:
 
     def getResult(self):
         if (self.game.receiverHasWon()):
-            return TennisResult("Win for " + self.game.receiver, "")
+            return TennisResult(WIN_FOR_ + self.game.receiver, "")
         return self.nextResult.getResult()
 
 
@@ -91,7 +92,7 @@ class AdvantageServer:
 
     def getResult(self):
         if (self.game.serverHasAdvantage()):
-            return TennisResult("Advantage " + self.game.server, "")
+            return TennisResult(ADVANTAGE_ + self.game.server, "")
         return self.nextResult.getResult()
 
 
@@ -102,7 +103,7 @@ class AdvantageReceiver:
 
     def getResult(self):
         if (self.game.receiverHasAdvantage()):
-            return TennisResult("Advantage " + self.game.receiver, "")
+            return TennisResult(ADVANTAGE_ + self.game.receiver, "")
         return self.nextResult.getResult()
 
 
